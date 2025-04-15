@@ -1,0 +1,218 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 260 10% 20%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 260 10% 20%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 260 10% 20%;
+
+    --primary: 260 70% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 180 60% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 90%;
+    --muted-foreground: 260 10% 40%;
+
+    --accent: 330 70% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 40.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 260 20% 85%;
+    --input: 260 20% 85%;
+    --ring: 260 70% 60%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 95%;
+    --sidebar-foreground: 240 5.3% 30%;
+    --sidebar-primary: 240 5.9% 30%;
+    --sidebar-primary-foreground: 0 0% 95%;
+    --sidebar-accent: 240 4.8% 85%;
+    --sidebar-accent-foreground: 240 5.9% 30%;
+    --sidebar-border: 220 13% 80%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 260 20% 8%;
+    --foreground: 260 10% 90%;
+
+    --card: 260 20% 12%;
+    --card-foreground: 260 10% 90%;
+
+    --popover: 260 20% 12%;
+    --popover-foreground: 260 10% 90%;
+
+    --primary: 260 70% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 180 60% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 260 20% 20%;
+    --muted-foreground: 260 10% 70%;
+
+    --accent: 330 70% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 40.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 260 20% 25%;
+    --input: 260 20% 25%;
+    --ring: 260 70% 60%;
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 240 5.3% 80%;
+    --sidebar-primary: 240 5.9% 80%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 240 4.8% 20%;
+    --sidebar-accent-foreground: 240 5.9% 80%;
+    --sidebar-border: 220 13% 30%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-feature-settings: "ss01", "ss03", "cv01", "cv02";
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply tracking-tight;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section {
+    @apply py-8 md:py-12 transition-all duration-500;
+  }
+}
+
+@layer utilities {
+  .dymm-card-shadow {
+    @apply shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  .dymm-gradient-bg {
+    @apply bg-gradient-to-br from-dymm-purple via-dymm-teal to-dymm-pink;
+  }
+
+  .dymm-text-gradient {
+    @apply bg-gradient-to-r from-dymm-purple to-dymm-pink bg-clip-text text-transparent;
+  }
+  
+  .hover-grow {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  .hover-glow {
+    @apply transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(138,43,226,0.5)];
+  }
+}
+
+/* Animation for elements coming into view */
+@keyframes pop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  40% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animation for elements sliding in from left */
+@keyframes slide-left {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Animation for elements sliding in from right */
+@keyframes slide-right {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Animation for elements sliding up */
+@keyframes slide-up {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animation for floating doodles */
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(var(--rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--rotate, 0deg));
+  }
+  100% {
+    transform: translateY(0) rotate(var(--rotate, 0deg));
+  }
+}
+
+@layer utilities {
+  .animate-pop {
+    animation: pop 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+  }
+  
+  .animate-slide-left {
+    animation: slide-left 0.5s ease-out forwards;
+  }
+  
+  .animate-slide-right {
+    animation: slide-right 0.5s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out forwards;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
